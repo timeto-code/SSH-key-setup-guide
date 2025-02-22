@@ -23,7 +23,7 @@
 
     ```bash
     # 如果您要连接的主机系统不支持新算法（如：Ed25519 ）的密钥，可以使用兼容性更好的算法，如 RSA。
-    ssh-keygen -t ed25519 -C "your_email@example.com"
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
     ```
 
 1. 启动 ssh-agent 服务。
@@ -34,7 +34,8 @@
         # PowerShell 执行以下命令
         Get-Service ssh-agent
 
-        # 打印结果如下。Running 表示服务正在运行。
+        # 打印结果如下。Status 为 Running 表示服务正在运行。应该不是首次配置 ssh-agent。可以跳过第 2 步。
+        # 如果是第一次配置 ssh-agent，那么 Status 应该为 Stopped。此时安装步骤 2 执行即可。
         Status   Name               DisplayName
         ------   ----               -----------
         Running  ssh-agent          OpenSSH Authentication Agent
@@ -46,6 +47,8 @@
         # 默认情况下是当执行第 1 步操作时，Status 应该为 Stopped。
         # 所以需要手动启动，并且设置开机时自动启动。
 
+        # 以下步骤需要以管理员身份运行 PowerShell。
+        # 以下步骤需要以管理员身份运行 PowerShell。
         # 以下步骤需要以管理员身份运行 PowerShell。
 
         # 设置 ssh-agent 服务开机时自动启动
